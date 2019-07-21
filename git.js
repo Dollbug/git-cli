@@ -6,8 +6,6 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
   .replace(/\s+/, "");
 
 function updateCode({ commit = "update" } = {}) {
-  console.log("当前分支：", currentBranch);
-
   execSync("git add .");
   execSync(`git commit -m "${JSON.stringify(commit)}"`);
   execSync(`git pull origin ${currentBranch}`);
@@ -55,6 +53,7 @@ function tag() {
   execSync(`git branch ${currentBranch} -D`);
   execSync("git tag");
 }
+
 
 module.exports = {
   updateCode,
