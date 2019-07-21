@@ -1,5 +1,5 @@
 // 此脚本必须在当前要打tag的分支运行
-
+const utils = require("./utils");
 let { execSync } = require("child_process");
 var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
   .toString()
@@ -25,7 +25,7 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 // execSync(`git branch ${currentBranch} -D`);
 // execSync("git tag");
 
-function updateCode({ commit }) {
+function updateCode({ commit = "update" }) {
   console.log("当前分支：", currentBranch);
   execSync("git add .");
   execSync(`git commit -m ${commit}`);
@@ -33,6 +33,15 @@ function updateCode({ commit }) {
   execSync(`git push origin ${currentBranch}`);
 }
 
+function newBranch({ branchDesc }) {
+  updateCode();
+  const dateStr = utils.getDateStr();
+  const branch = `feature/${dateStr}-${branchDesc}`;
+  execSync(`git checkout -b ${branch}`);
+  execSync(`git push origin ${branch}`);
+}
+
 module.exports = {
-  updateCode
+  updateCode,
+  newBranch
 };
