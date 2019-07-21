@@ -6,7 +6,8 @@ module.exports = [
     choices: [
       { name: "提交代码", value: "update" },
       { name: "切换分支", value: "go" },
-      { name: "新建分支", value: "newbranch" },
+      { name: "新建feature分支", value: "feature" },
+      { name: "新建release分支", value: "release" },
       { name: "自动tag", value: "tag" }
     ],
     filter: function(val) {

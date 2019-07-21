@@ -13,7 +13,13 @@ function updateCode({ commit = "update" } = {}) {
   execSync(`git push origin ${currentBranch}`);
 }
 
-function newBranch({ branchDesc }) {
+function checkoutBranch({ branch }) {
+  updateCode();
+  execSync(`git checkout ${branch}`);
+  execSync(`git pull origin ${branch}`);
+}
+
+function feature({ branchDesc }) {
   updateCode();
   const dateStr = utils.getDateStr();
   const branch = `feature/${dateStr}-${branchDesc}`;
@@ -21,13 +27,15 @@ function newBranch({ branchDesc }) {
   execSync(`git push origin ${branch}`);
 }
 
-function checkoutBranch({ branch }) {
+function release({ release }) {
   updateCode();
-  execSync(`git checkout ${branch}`);
-  execSync(`git pull origin ${branch}`);
+  const version = utils.getVersion();
+  const branch = `${release}${version}`;
+  execSync(`git checkout -b ${branch}`);
+  execSync(`git push origin ${branch}`);
 }
 
-function tag({ tag }) {
+function tag() {
   // 当前要打tag的分支
   const tag = currentBranch.slice(
     currentBranch.length - 10,
@@ -49,7 +57,8 @@ function tag({ tag }) {
 
 module.exports = {
   updateCode,
-  newBranch,
+  feature,
+  release,
   checkoutBranch,
   tag
 };

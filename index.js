@@ -31,23 +31,6 @@ function doAnswer(anwsers) {
         });
       break;
 
-    case "newbranch":
-      inquirer
-        .prompt([
-          {
-            type: "input",
-            name: "branchDesc",
-            message: "请输入git分支名称"
-          }
-        ])
-        .then(anwsers => {
-          git.newBranch(anwsers);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-      break;
-
     case "go":
       inquirer
         .prompt([
@@ -65,21 +48,44 @@ function doAnswer(anwsers) {
         });
       break;
 
-      case "tag":
+    case "feature":
       inquirer
         .prompt([
           {
             type: "input",
-            name: "tag",
-            message: "请输入tag名称"
+            name: "branchDesc",
+            message: "请输入git分支名称",
+            default: "function"
           }
         ])
         .then(anwsers => {
-          git.tag(anwsers);
+          git.feature(anwsers);
         })
         .catch(err => {
           console.log(err);
         });
+      break;
+
+    case "release":
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "release",
+            message: "请输入release分支名称",
+            default: "release-v1.22."
+          }
+        ])
+        .then(anwsers => {
+          git.release(anwsers);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      break;
+
+    case "tag":
+      git.tag();
       break;
   }
 }
