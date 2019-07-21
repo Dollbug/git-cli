@@ -11,8 +11,8 @@ function getDateStr() {
 }
 
 // 获得当前日期在当月第几周
-function getMonthWeek(yaer, month, day) {
-  const date = new Date(yaer, parseInt(month) - 1, day);
+function getMonthWeek(year, month, day) {
+  const date = new Date(year, parseInt(month) - 1, day);
   const w = date.getDay();
   const d = date.getDate();
   return Math.ceil((d + 6 - w) / 7);
@@ -21,7 +21,7 @@ function getMonthWeek(yaer, month, day) {
 function getVersion() {
   const day = new Date().getDate();
   const _year = (year + "").slice(2, 4);
-  const weekth = getMonthWeek(yaer, month, day);
+  const weekth = getMonthWeek(year, month, day);
   return _year + month + "." + weekth + day;
 }
 
