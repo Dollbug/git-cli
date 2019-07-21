@@ -19,10 +19,10 @@ function checkoutBranch({ branch }) {
   execSync(`git pull origin ${branch}`);
 }
 
-function feature({ branchDesc }) {
+function feature({ feature }) {
   updateCode();
   const dateStr = utils.getDateStr();
-  const branch = `feature/${dateStr}-${branchDesc}`;
+  const branch = `feature/${dateStr}-${feature}`;
   execSync(`git checkout -b ${branch}`);
   execSync(`git push origin ${branch}`);
 }

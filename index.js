@@ -53,7 +53,7 @@ function doAnswer(anwsers) {
         .prompt([
           {
             type: "input",
-            name: "branchDesc",
+            name: "feature",
             message: "请输入git分支名称",
             default: "function"
           }
