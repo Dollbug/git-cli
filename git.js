@@ -1,4 +1,3 @@
-
 const utils = require("./utils");
 let { execSync } = require("child_process");
 var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
@@ -7,7 +6,12 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 
 function updateCode({ commit = "update" } = {}) {
   execSync("git add .");
-  execSync(`git commit -m ${JSON.stringify(commit)}`);
+  if (/.*[\u4e00-\u9fa5]+.*$/.test(commit)) {
+    execSync(`git commit -m ${JSON.stringify(commit)}`);
+  } else {
+    execSync(`git commit -m ${commit}`);
+  }
+
   execSync(`git pull origin ${currentBranch}`);
   execSync(`git push origin ${currentBranch}`);
 }
@@ -54,7 +58,6 @@ function tag() {
   execSync(`git branch ${currentBranch} -D`);
   execSync("git tag");
 }
-
 
 module.exports = {
   updateCode,
