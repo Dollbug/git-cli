@@ -12,7 +12,6 @@ function updateCode({ commit = "update" } = {}) {
   execSync(`git push origin ${currentBranch}`);
 }
 
-
 function checkoutBranch({ branch }) {
   // updateCode();
   execSync(`git checkout ${branch}`);
