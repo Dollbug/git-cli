@@ -2,7 +2,6 @@
 var inquirer = require("inquirer");
 const questions = require("./question");
 const git = require("./git");
-console.log(git)
 
 inquirer
   .prompt(questions)
@@ -12,9 +11,7 @@ inquirer
   });
 
 function doAnswer(anwsers) {
-  console.log(JSON.stringify(anwsers, null, "  "));
   if (anwsers.git == "update") {
-    console.log(anwsers.git, 222);
     inquirer
       .prompt([
         {
@@ -25,9 +22,7 @@ function doAnswer(anwsers) {
         }
       ])
       .then(anwsers => {
-        // Use user feedback for... whatever!!
-        console.log(JSON.stringify(anwsers, null, "  "));
-        git.updateCode(anwsers)
+        git.updateCode(anwsers);
       })
       .catch(err => {
         console.log(err);
