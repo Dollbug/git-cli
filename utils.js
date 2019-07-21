@@ -19,7 +19,7 @@ function getMonthWeek(year, month, day) {
 }
 
 function getVersion() {
-  const day = new Date().getDate();
+  const day = new Date().getDay();
   const _year = (year + "").slice(2, 4);
   const weekth = getMonthWeek(year, month, day);
   return _year + month + "." + weekth + day;
