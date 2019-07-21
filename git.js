@@ -7,7 +7,7 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 
 function updateCode({ commit = "update" } = {}) {
   execSync("git add .");
-  execSync(`git commit -m "${JSON.stringify(commit)}"`);
+  execSync(`git commit -m ${JSON.stringify(commit)}`);
   execSync(`git pull origin ${currentBranch}`);
   execSync(`git push origin ${currentBranch}`);
 }
