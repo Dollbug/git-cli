@@ -64,5 +64,22 @@ function doAnswer(anwsers) {
           console.log(err);
         });
       break;
+
+      case "tag":
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "tag",
+            message: "请输入tag名称"
+          }
+        ])
+        .then(anwsers => {
+          git.tag(anwsers);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      break;
   }
 }

@@ -5,26 +5,6 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
   .toString()
   .replace(/\s+/, "");
 
-// 当前要打tag的分支
-// const tag = currentBranch.slice(
-//   currentBranch.length - 10,
-//   currentBranch.length
-// );
-
-// console.log("当前分支：", currentBranch);
-
-// if (currentBranch !== "master") {
-//   execSync("git checkout master");
-// }
-
-// execSync(`git tag ${tag}`);
-// execSync("git push origin --tags");
-
-// // 删除分支
-// execSync(`git push origin :${currentBranch}`);
-// execSync(`git branch ${currentBranch} -D`);
-// execSync("git tag");
-
 function updateCode({ commit = "update" } = {}) {
   console.log("当前分支：", currentBranch);
   execSync("git add .");
@@ -47,8 +27,29 @@ function checkoutBranch({ branch }) {
   execSync(`git pull origin ${branch}`);
 }
 
+function tag({ tag }) {
+  // 当前要打tag的分支
+  const tag = currentBranch.slice(
+    currentBranch.length - 10,
+    currentBranch.length
+  );
+
+  if (currentBranch !== "master") {
+    execSync("git checkout master");
+  }
+
+  execSync(`git tag ${tag}`);
+  execSync("git push origin --tags");
+
+  // 删除分支
+  execSync(`git push origin :${currentBranch}`);
+  execSync(`git branch ${currentBranch} -D`);
+  execSync("git tag");
+}
+
 module.exports = {
   updateCode,
   newBranch,
-  checkoutBranch
+  checkoutBranch,
+  tag
 };
