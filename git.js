@@ -25,7 +25,7 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 // execSync(`git branch ${currentBranch} -D`);
 // execSync("git tag");
 
-function updateCode({ commit = "update" }) {
+function updateCode({ commit = "update" } = {}) {
   console.log("当前分支：", currentBranch);
   execSync("git add .");
   execSync(`git commit -m ${commit}`);

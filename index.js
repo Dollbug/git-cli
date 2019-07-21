@@ -28,6 +28,7 @@ function doAnswer(anwsers) {
   //         console.log(err);
   //       });
   //   }
+  console.log("anwsers.git:", anwsers.git);
   switch (anwsers.git) {
     case "update":
       inquirer
@@ -47,12 +48,12 @@ function doAnswer(anwsers) {
         });
       break;
 
-    case "newBranch":
+    case "newbranch":
       inquirer
         .prompt([
           {
             type: "input",
-            name: "commit",
+            name: "branchDesc",
             message: "请输入git分支名称"
           }
         ])
