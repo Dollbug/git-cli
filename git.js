@@ -41,7 +41,14 @@ function newBranch({ branchDesc }) {
   execSync(`git push origin ${branch}`);
 }
 
+function checkoutBranch({ branch }) {
+  updateCode();
+  execSync(`git checkout ${branch}`);
+  execSync(`git pull origin ${branch}`);
+}
+
 module.exports = {
   updateCode,
-  newBranch
+  newBranch,
+  checkoutBranch
 };

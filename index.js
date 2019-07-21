@@ -11,23 +11,6 @@ inquirer
   });
 
 function doAnswer(anwsers) {
-  //   if (anwsers.git == "update") {
-  //     inquirer
-  //       .prompt([
-  //         {
-  //           type: "input",
-  //           name: "commit",
-  //           message: "请输入git commit:",
-  //           default: "update"
-  //         }
-  //       ])
-  //       .then(anwsers => {
-  //         git.updateCode(anwsers);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   }
   console.log("anwsers.git:", anwsers.git);
   switch (anwsers.git) {
     case "update":
@@ -59,6 +42,23 @@ function doAnswer(anwsers) {
         ])
         .then(anwsers => {
           git.newBranch(anwsers);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      break;
+
+    case "go":
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "branch",
+            message: "请输入git分支名称"
+          }
+        ])
+        .then(anwsers => {
+          git.checkoutBranch(anwsers);
         })
         .catch(err => {
           console.log(err);
