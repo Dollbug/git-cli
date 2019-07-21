@@ -1,0 +1,14 @@
+{
+  "name": "git-cli",
+  "version": "1.0.0",
+  "description": "for simplify git command operation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "hi": "index.js"
+  },
+  "author": "chenxf",
+  "license": "ISC"
+}
