@@ -7,7 +7,6 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 
 function updateCode({ commit = "update" } = {}) {
   execSync("git add .");
-
   execSync(`git commit -m "${commit}"`);
   execSync(`git pull origin ${currentBranch}`);
   execSync(`git push origin ${currentBranch}`);
@@ -15,13 +14,13 @@ function updateCode({ commit = "update" } = {}) {
 
 
 function checkoutBranch({ branch }) {
-  updateCode();
+  // updateCode();
   execSync(`git checkout ${branch}`);
   execSync(`git pull origin ${branch}`);
 }
 
 function feature({ feature }) {
-  updateCode();
+  // updateCode();
   const dateStr = utils.getDateStr();
   const branch = `feature/${dateStr}-${feature}`;
   execSync(`git checkout -b ${branch}`);
@@ -29,7 +28,7 @@ function feature({ feature }) {
 }
 
 function release({ release }) {
-  updateCode();
+  // updateCode();
   const version = utils.getVersion();
   const branch = `${release}${version}`;
   execSync(`git checkout -b ${branch}`);
