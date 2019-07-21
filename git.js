@@ -1,4 +1,4 @@
-// 此脚本必须在当前要打tag的分支运行
+
 const utils = require("./utils");
 let { execSync } = require("child_process");
 var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
@@ -35,6 +35,7 @@ function release({ release }) {
 }
 
 function tag() {
+  // 此脚本必须在当前要打tag的分支运行
   // 当前要打tag的分支
   const tag = currentBranch.slice(
     currentBranch.length - 10,
