@@ -4,7 +4,7 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
   .toString()
   .replace(/\s+/, "");
 
-function updateCode({ commit = "update" }) {
+function updateCode({ commit = "n" }) {
   execSync("git add .");
   // if (/.*[\u4e00-\u9fa5]+.*$/.test(commit)) {
   //   execSync(`git commit -m ${JSON.stringify(commit)}`);

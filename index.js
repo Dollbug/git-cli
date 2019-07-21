@@ -20,7 +20,7 @@ function doAnswer(anwsers) {
             type: "input",
             name: "commit",
             message: "请输入git commit:",
-            default: "update"
+            default: "n"
           }
         ])
         .then(anwsers => {
