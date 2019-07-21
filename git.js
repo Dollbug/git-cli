@@ -9,7 +9,7 @@ function updateCode({ commit = "n" }) {
   if (/.*[\u4e00-\u9fa5]+.*$/.test(commit)) {
     execSync(`git commit -m ${JSON.stringify(commit)}`);
   } else {
-    execSync(`git commit -m ${commit}`);
+    execSync(`git commit -m '${commit}'`);
     // execSync(`git commit -m ${JSON.stringify(commit)}`);
   }
 
