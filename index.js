@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 var inquirer = require("inquirer");
-const questions = require("./question");
-const git = require("./git");
+const questions = require("./src/question");
+const git = require("./src/git");
 
 inquirer
   .prompt(questions)
@@ -13,14 +13,14 @@ inquirer
 function doAnswer(anwsers) {
   console.log("anwsers.git:", anwsers.git);
   switch (anwsers.git) {
-    case "update":
+    case "push":
       inquirer
         .prompt([
           {
             type: "input",
             name: "commit",
             message: "请输入git commit:",
-            default: "n"
+            default: "update"
           }
         ])
         .then(anwsers => {
@@ -31,7 +31,7 @@ function doAnswer(anwsers) {
         });
       break;
 
-    case "go":
+    case "checkout":
       inquirer
         .prompt([
           {
