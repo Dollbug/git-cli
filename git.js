@@ -7,7 +7,7 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 
 function updateCode({ commit = "update" } = {}) {
   const a = execSync("git status");
-  console.log("当前git状态：",a)
+  console.log("当前git状态：",a.toString())
   execSync("git add .");
   execSync(`git commit -m "${commit}"`, (error, stdout, stderr) => {
    
