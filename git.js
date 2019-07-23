@@ -15,6 +15,8 @@ function updateCode({ commit = "update" } = {}) {
     execSync(`git commit -m "${commit}"`);
     execSync(`git pull origin ${currentBranch}`);
     execSync(`git push origin ${currentBranch}`);
+  }else{
+    console.log("当前没有需要提交的代码哦～")
   }
 }
 
