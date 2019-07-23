@@ -8,7 +8,7 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 function updateCode({ commit = "update" } = {}) {
   execSync("git add .");
   execSync(`git commit -m "${commit}"`, (error, stdout, stderr) => {
-    console.log("stdout: " + stdout);
+    console.log("stdout: " + stdout.toString());
     console.log("stderr: " + stderr);
     if (error !== null) {
       console.log("exec error: " + error);
