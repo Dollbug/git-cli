@@ -7,13 +7,15 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
 
 function updateCode({ commit = "update" } = {}) {
   const a = execSync("git status");
-  console.log("当前git状态：",a.toString())
-  execSync("git add .");
-  execSync(`git commit -m "${commit}"`, (error, stdout, stderr) => {
-   
-  });
-  execSync(`git pull origin ${currentBranch}`);
-  execSync(`git push origin ${currentBranch}`);
+  console.log("当前git状态：", a.toString());
+  const reg = RegExp(/modified:/);
+  const modified = reg.test(a.toString());
+  if (modified) {
+    execSync("git add .");
+    execSync(`git commit -m "${commit}"`);
+    execSync(`git pull origin ${currentBranch}`);
+    execSync(`git push origin ${currentBranch}`);
+  }
 }
 
 function checkoutBranch({ branch }) {
