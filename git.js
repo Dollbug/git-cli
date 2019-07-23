@@ -6,17 +6,15 @@ var currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
   .replace(/\s+/, "");
 
 function updateCode({ commit = "update" } = {}) {
-  const a = execSync("git status");
-  console.log("当前git状态：", a.toString());
+  const status = execSync("git status");
+  console.log(status.toString());
   const reg = RegExp(/modified:/);
-  const modified = reg.test(a.toString());
+  const modified = reg.test(status.toString());
   if (modified) {
     execSync("git add .");
     execSync(`git commit -m "${commit}"`);
     execSync(`git pull origin ${currentBranch}`);
     execSync(`git push origin ${currentBranch}`);
-  }else{
-    console.log("当前没有需要提交的代码哦～")
   }
 }
 
