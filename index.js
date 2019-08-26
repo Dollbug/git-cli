@@ -73,7 +73,7 @@ function doAnswer(anwsers) {
             type: "input",
             name: "release",
             message: "请输入release分支名称",
-            default: "release-v1.22."
+            default: "release-v1."
           }
         ])
         .then(anwsers => {
