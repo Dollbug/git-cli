@@ -25,11 +25,13 @@ function checkoutBranch({ branch }) {
 }
 
 function feature({ feature }) {
-  updateCode();
+  execSync(`git checkout release`);
+  execSync(`git pull`);
+
   const dateStr = utils.getDateStr();
-  const branch = `feature/${dateStr}-${feature}`;
+  const branch = `feature_${dateStr}_${feature}`;
   execSync(`git checkout -b ${branch}`);
-  execSync(`git push origin ${branch}`);
+  execSync(`git push --set-upstream origin ${branch}`);
 }
 
 function release({ release }) {

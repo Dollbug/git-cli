@@ -1,13 +1,13 @@
 {
-  "name": "pp-git-cli",
-  "version": "1.0.4",
+  "name": "@whale/git",
+  "version": "1.0.0",
   "description": "for simplify git command operation",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "ppgit": "index.js"
+    "wgit": "index.js"
   },
   "author": "chenxf",
   "license": "ISC",

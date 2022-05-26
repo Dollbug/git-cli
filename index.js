@@ -13,6 +13,24 @@ inquirer
 function doAnswer(anwsers) {
   console.log("anwsers.git:", anwsers.git);
   switch (anwsers.git) {
+    case "feature":
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "feature",
+            message: "请输入git分支名称",
+            default: "function"
+          }
+        ])
+        .then(anwsers => {
+          git.feature(anwsers);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      break;
+
     case "push":
       inquirer
         .prompt([
@@ -48,23 +66,7 @@ function doAnswer(anwsers) {
         });
       break;
 
-    case "feature":
-      inquirer
-        .prompt([
-          {
-            type: "input",
-            name: "feature",
-            message: "请输入git分支名称",
-            default: "function"
-          }
-        ])
-        .then(anwsers => {
-          git.feature(anwsers);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-      break;
+
 
     case "release":
       inquirer
